@@ -2,10 +2,13 @@ package com.lonkal.convexhullapp.main;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Random;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
@@ -14,12 +17,24 @@ public class GraphPanel extends JPanel {
 	private LinkedList<Point> convexHullList = new LinkedList<Point>();
 	private Random random = new Random();
 	private Line step;
+	private Timer taskTimer = new Timer(1000*5, new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			repaint();
+		}
+	});
 
 	private final static int BUFFER_BOUNDS = 5;
 
+	public Timer getTaskTimer() {
+		return taskTimer;
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.clearRect(0, 0, 800, 800);
 
 		// Draw the points
 		for (Point p : pointList) {
@@ -68,7 +83,7 @@ public class GraphPanel extends JPanel {
 
 	public void updateStep(Point hullPoint, Point p) {
 		step = new Line(hullPoint, p);
-		repaint();
+		//repaint();
 	}
 
 	public void clearStep() {
@@ -88,5 +103,12 @@ public class GraphPanel extends JPanel {
 		clearConvexHull();
 		clearPoints();
 		clearStep();
+	}
+
+	public void setConvexHullList(LinkedList<Point> newConvexHullList) {
+		if (newConvexHullList == null) {
+			throw new IllegalArgumentException("Null convex hull list passed in");
+		}
+		this.convexHullList = newConvexHullList;
 	}
 }
