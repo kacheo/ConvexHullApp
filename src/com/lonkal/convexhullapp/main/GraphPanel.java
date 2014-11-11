@@ -83,7 +83,7 @@ public class GraphPanel extends JPanel {
 
 	public void updateStep(Point hullPoint, Point p) {
 		step = new Line(hullPoint, p);
-		//repaint();
+		repaint();
 	}
 
 	public void clearStep() {
@@ -103,6 +103,21 @@ public class GraphPanel extends JPanel {
 		clearConvexHull();
 		clearPoints();
 		clearStep();
+	}
+	
+	public void start() {
+		JarvisMarch jm = new JarvisMarch(pointList);
+
+		jm.runEntirely();
+
+		setConvexHullList(jm.getConvexHullList());
+		repaint();
+	}
+	
+	public void stop() {		
+	}
+	
+	public void resume() {
 	}
 
 	public void setConvexHullList(LinkedList<Point> newConvexHullList) {

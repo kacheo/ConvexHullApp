@@ -18,14 +18,7 @@ public class ComputeCHButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JarvisMarch jm = new JarvisMarch(graphPanel.getPointList());
-
-		jm.runEntirely();
-
-		graphPanel.setConvexHullList(jm.getConvexHullList());
-		graphPanel.repaint();
-		// default is jarvis
-		// jarvisMarch();
+		graphPanel.start();
 	}
 
 	public void changeCHMethod() {
