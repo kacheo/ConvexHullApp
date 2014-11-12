@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 public class ConvexHullApp {
 
@@ -13,6 +15,8 @@ public class ConvexHullApp {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 800;
 
+	public static JTextPane numCounterPane;
+	
 	public static void main(String[] args) {
 		initializeGUI();
 	}
@@ -27,6 +31,16 @@ public class ConvexHullApp {
 		GraphPanel graphPanel = new GraphPanel();
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
 
+		// NORTH PANEL
+		JPanel topPanel = new JPanel();
+		JTextPane numCounterStaticPane = new JTextPane(); //Holds the step
+		numCounterStaticPane.setText("Step Number: ");
+		numCounterPane = new JTextPane();
+		numCounterPane.setText("0");
+		topPanel.add(numCounterStaticPane);
+		topPanel.add(numCounterPane);
+		
+		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
@@ -46,6 +60,8 @@ public class ConvexHullApp {
 		toolbarPanel.add(resumeButton);
 		toolbarPanel.add(stopButton);
 
+		// MAIN PANEL
 		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);
+		mainFrame.add(topPanel, BorderLayout.NORTH);
 	}
 }

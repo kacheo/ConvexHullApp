@@ -13,11 +13,13 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
 
+	public final static int DEFAULT_DELAY_MS = 50;
+
 	private LinkedList<Point> pointList = new LinkedList<Point>();
 	private LinkedList<Point> convexHullList = new LinkedList<Point>();
 	private Random random = new Random();
 	private Line step;
-	private Timer taskTimer = new Timer(1000*5, new ActionListener() {
+	private Timer taskTimer = new Timer(DEFAULT_DELAY_MS, new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -30,16 +32,16 @@ public class GraphPanel extends JPanel {
 	public Timer getTaskTimer() {
 		return taskTimer;
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.clearRect(0, 0, 800, 800);
+		g.clearRect(0, 0, ConvexHullApp.HEIGHT, ConvexHullApp.WIDTH);
 
 		// Draw the points
 		for (Point p : pointList) {
-			g.drawRect((int) p.getX()-1, (int) p.getY()-1, 2, 2);
-		
+			g.drawRect((int) p.getX() - 1, (int) p.getY() - 1, 2, 2);
+
 		}
 
 		// Draw a step
@@ -104,40 +106,44 @@ public class GraphPanel extends JPanel {
 		clearPoints();
 		clearStep();
 	}
-	
+
 	public void start() {
 		final JarvisMarch jm = new JarvisMarch(pointList);
-		taskTimer = new Timer(30, new ActionListener() {
+		ConvexHullApp.numCounterPane.setText("0");
+
+		taskTimer = new Timer(DEFAULT_DELAY_MS, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (!jm.isDone()) {
 					int numStep = jm.getCurrentStep();
+					ConvexHullApp.numCounterPane.setText(Integer
+							.toString(numStep));
 					step = jm.getCurrentStepLine();
-					jm.step();					
+					jm.step();
 					setConvexHullList(jm.getConvexHullList());
 					repaint();
 				} else {
 					stop();
 				}
 			}
-			
+
 		});
 		taskTimer.start();
 	}
-	
+
 	public void stop() {
 		taskTimer.stop();
 	}
-	
+
 	public void resume() {
 		taskTimer.start();
 	}
 
 	public void setConvexHullList(LinkedList<Point> newConvexHullList) {
 		if (newConvexHullList == null) {
-			throw new IllegalArgumentException("Null convex hull list passed in");
+			throw new IllegalArgumentException(
+					"Null convex hull list passed in");
 		}
 		this.convexHullList = newConvexHullList;
 	}
