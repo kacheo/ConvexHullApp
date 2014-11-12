@@ -152,4 +152,10 @@ public class GraphPanel extends JPanel {
 		}
 		this.convexHullList = newConvexHullList;
 	}
+
+	public void addPoint(int x, int y) {
+		pointList.add(new Point(x,y));
+		repaint();
+	}
 }
+;

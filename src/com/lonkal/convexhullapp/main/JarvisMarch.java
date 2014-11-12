@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.LinkedList;
 
 /**
- * A class that represents an algorithm
+ * A class that represents an algorithm called Jarvis March
  * 
  * @author Kal
  * 

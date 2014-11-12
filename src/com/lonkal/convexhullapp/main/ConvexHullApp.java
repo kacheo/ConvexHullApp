@@ -1,6 +1,8 @@
 package com.lonkal.convexhullapp.main;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +31,39 @@ public class ConvexHullApp {
 		mainFrame.setVisible(true);
 		mainFrame.setSize(WIDTH, HEIGHT);
 
-		GraphPanel graphPanel = new GraphPanel();
+		final GraphPanel graphPanel = new GraphPanel();
+		graphPanel.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				graphPanel.addPoint(e.getX(), e.getY());
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
 
 		// NORTH PANEL
