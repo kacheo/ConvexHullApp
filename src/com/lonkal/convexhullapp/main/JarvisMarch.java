@@ -111,4 +111,8 @@ public class JarvisMarch implements ConvexHullAlgo {
 
 		return leftMostPoint;
 	}
+
+	public Line getCurrentStepLine() {
+		return new Line(p,q);
+	}
 }

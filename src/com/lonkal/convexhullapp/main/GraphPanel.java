@@ -38,8 +38,8 @@ public class GraphPanel extends JPanel {
 
 		// Draw the points
 		for (Point p : pointList) {
-			g.drawLine((int) p.getX(), (int) p.getY(), (int) p.getX(),
-					(int) p.getY());
+			g.drawRect((int) p.getX()-1, (int) p.getY()-1, 2, 2);
+		
 		}
 
 		// Draw a step
@@ -106,18 +106,33 @@ public class GraphPanel extends JPanel {
 	}
 	
 	public void start() {
-		JarvisMarch jm = new JarvisMarch(pointList);
+		final JarvisMarch jm = new JarvisMarch(pointList);
+		taskTimer = new Timer(30, new ActionListener() {
 
-		jm.runEntirely();
-
-		setConvexHullList(jm.getConvexHullList());
-		repaint();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (!jm.isDone()) {
+					int numStep = jm.getCurrentStep();
+					step = jm.getCurrentStepLine();
+					jm.step();					
+					setConvexHullList(jm.getConvexHullList());
+					repaint();
+				} else {
+					stop();
+				}
+			}
+			
+		});
+		taskTimer.start();
 	}
 	
-	public void stop() {		
+	public void stop() {
+		taskTimer.stop();
 	}
 	
 	public void resume() {
+		taskTimer.start();
 	}
 
 	public void setConvexHullList(LinkedList<Point> newConvexHullList) {
