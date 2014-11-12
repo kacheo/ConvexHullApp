@@ -7,21 +7,22 @@ import java.util.LinkedList;
  * A class that represents an algorithm
  * 
  * @author Kal
- *
+ * 
  */
 public class JarvisMarch implements ConvexHullAlgo {
 
 	private int stepNum = 0;
 	private int currentIndexOfElement = 0; // Which was the last checked ith
 											// point of pointList.
-
 	private Point p;
 	private Point q;
+	private Point r;
 
 	private LinkedList<Point> pointList;
 	private LinkedList<Point> convexHullList;
 
 	private boolean isDone = false;
+	//private boolean isRunning = false;
 
 	public JarvisMarch(LinkedList<Point> list) {
 		if (list == null) {
@@ -52,6 +53,7 @@ public class JarvisMarch implements ConvexHullAlgo {
 
 		p = leftMostPoint;
 		q = pointList.getFirst();
+		r = pointList.getFirst();
 	}
 
 	@Override
@@ -65,6 +67,7 @@ public class JarvisMarch implements ConvexHullAlgo {
 
 				// We're done, since we reached the originating point of CH
 				isDone = true;
+				r = null;
 			}
 
 			p = q;
@@ -75,8 +78,8 @@ public class JarvisMarch implements ConvexHullAlgo {
 			return;
 		}
 
-		Point r = pointList.get(currentIndexOfElement);
-		if (q == p || Primitives.orientation(p, q, r) == 2) {
+		r = pointList.get(currentIndexOfElement);
+		if (q == p || Primitives.orientation(p, q, r) == 1) {
 			q = r;
 		}
 
@@ -101,7 +104,7 @@ public class JarvisMarch implements ConvexHullAlgo {
 	}
 
 	// Method specific to this method, which gets the left most point of points
-	public Point getLeftmostPoint(LinkedList<Point> list) {
+	private Point getLeftmostPoint(LinkedList<Point> list) {
 		Point leftMostPoint = list.getFirst();
 		for (Point p : list) {
 			if (p.x < leftMostPoint.x) {
@@ -113,6 +116,6 @@ public class JarvisMarch implements ConvexHullAlgo {
 	}
 
 	public Line getCurrentStepLine() {
-		return new Line(p,q);
+		return new Line(p, q);
 	}
 }

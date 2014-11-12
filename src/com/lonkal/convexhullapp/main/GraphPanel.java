@@ -1,5 +1,6 @@
 package com.lonkal.convexhullapp.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -13,24 +14,44 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
 
-	public final static int DEFAULT_DELAY_MS = 50;
+	public final static int DEFAULT_DELAY_MS = 5;
+	private final static int BUFFER_BOUNDS = 5;
 
 	private LinkedList<Point> pointList = new LinkedList<Point>();
 	private LinkedList<Point> convexHullList = new LinkedList<Point>();
 	private Random random = new Random();
 	private Line step;
-	private Timer taskTimer = new Timer(DEFAULT_DELAY_MS, new ActionListener() {
+
+	// We change the actionlistener only, so timer is a final object
+	private CGActionListener cgActionListener = new CGActionListener();
+	private final Timer taskTimer = new Timer(DEFAULT_DELAY_MS,
+			cgActionListener);
+
+	private class CGActionListener implements ActionListener {
+		private ConvexHullAlgo convexHullAlgo;
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			repaint();
+		public void actionPerformed(ActionEvent e) {
+			if (!convexHullAlgo.isDone()) {
+				int numStep = convexHullAlgo.getCurrentStep();
+				ConvexHullApp.numCounterPane.setText(Integer.toString(numStep));
+				step = convexHullAlgo.getCurrentStepLine();
+				convexHullAlgo.step();
+				setConvexHullList(convexHullAlgo.getConvexHullList());
+				repaint();
+			} else {
+				stop();
+			}
 		}
-	});
 
-	private final static int BUFFER_BOUNDS = 5;
+		public void setConvexHullAlgo(ConvexHullAlgo cha) {
+			convexHullAlgo = cha;
 
-	public Timer getTaskTimer() {
-		return taskTimer;
+		}
+
+		public ConvexHullAlgo getConvexHullAlgo() {
+			return convexHullAlgo;
+		}
 	}
 
 	@Override
@@ -40,16 +61,19 @@ public class GraphPanel extends JPanel {
 
 		// Draw the points
 		for (Point p : pointList) {
+			g.setColor(new Color(0, 0, 0));
 			g.drawRect((int) p.getX() - 1, (int) p.getY() - 1, 2, 2);
 
 		}
 
 		// Draw a step
 		if (step != null) {
+			g.setColor(new Color(0, 100, 255));
 			g.drawLine(step.getPoint1().x, step.getPoint1().y,
 					step.getPoint2().x, step.getPoint2().y);
 		}
 
+		g.setColor(new Color(161, 0, 0));
 		// Draw convex hull
 		if (convexHullList != null) {
 			for (int i = 0; i < convexHullList.size() - 1; i++) {
@@ -85,20 +109,18 @@ public class GraphPanel extends JPanel {
 
 	public void updateStep(Point hullPoint, Point p) {
 		step = new Line(hullPoint, p);
-		repaint();
 	}
 
 	public void clearStep() {
 		step = null;
-		repaint();
 	}
 
-	public void addCHList(LinkedList<Point> convexHullList) {
-		this.convexHullList = convexHullList;
+	public void addCHList(LinkedList<Point> newConvexHullList) {
+		convexHullList = newConvexHullList;
 	}
 
 	public void clearConvexHull() {
-		this.convexHullList.clear();
+		convexHullList.clear();
 	}
 
 	public void clear() {
@@ -110,25 +132,8 @@ public class GraphPanel extends JPanel {
 	public void start() {
 		final JarvisMarch jm = new JarvisMarch(pointList);
 		ConvexHullApp.numCounterPane.setText("0");
+		cgActionListener.setConvexHullAlgo(jm);
 
-		taskTimer = new Timer(DEFAULT_DELAY_MS, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!jm.isDone()) {
-					int numStep = jm.getCurrentStep();
-					ConvexHullApp.numCounterPane.setText(Integer
-							.toString(numStep));
-					step = jm.getCurrentStepLine();
-					jm.step();
-					setConvexHullList(jm.getConvexHullList());
-					repaint();
-				} else {
-					stop();
-				}
-			}
-
-		});
 		taskTimer.start();
 	}
 

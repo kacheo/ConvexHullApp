@@ -22,6 +22,7 @@ public class ConvexHullApp {
 	}
 
 	private static void initializeGUI() {
+		// MAIN PANEL's settings
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("ConvexHullApp");
 		mainFrame.setLayout(new BorderLayout());
