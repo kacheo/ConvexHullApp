@@ -9,17 +9,12 @@ import java.util.LinkedList;
  * @author Kal
  * 
  */
-public class JarvisMarch implements ConvexHullAlgo {
+public class JarvisMarch extends ConvexHullAlgo {
 
-	private int stepNum = 0;
 	private int currentIndexOfElement = 0; // Which was the last checked ith
 											// point of pointList.
-	private Point p;
-	private Point q;
-	private Point r;
+	private Point p,q,r;
 
-	private LinkedList<Point> pointList;
-	private LinkedList<Point> convexHullList;
 
 	private boolean isDone = false;
 	//private boolean isRunning = false;
@@ -90,12 +85,6 @@ public class JarvisMarch implements ConvexHullAlgo {
 	@Override
 	public boolean isDone() {
 		return isDone;
-	}
-
-	// Int representing the step #
-	@Override
-	public int getCurrentStep() {
-		return stepNum;
 	}
 
 	// return the current convexhull list
