@@ -11,6 +11,10 @@ import java.util.LinkedList;
  */
 public class JarvisMarch extends ConvexHullAlgo {
 
+	public JarvisMarch(LinkedList<Point> list) {
+		super(list);
+	}
+
 	private int currentIndexOfElement = 0; // Which was the last checked ith
 											// point of pointList.
 	private Point p,q,r;
@@ -19,19 +23,6 @@ public class JarvisMarch extends ConvexHullAlgo {
 	private boolean isDone = false;
 	//private boolean isRunning = false;
 
-	public JarvisMarch(LinkedList<Point> list) {
-		if (list == null) {
-			throw new IllegalArgumentException("Passed in list was null");
-		}
-		pointList = list;
-
-		if (pointList.size() < 3) {
-			throw new IllegalArgumentException(
-					"Fail... the number of points has to be 3 or more");
-		}
-
-		init();
-	}
 
 	public void runEntirely() {
 		while (!isDone) {
@@ -39,7 +30,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 		}
 	}
 
-	private void init() {
+	protected void init() {
 		convexHullList = new LinkedList<Point>();
 
 		Point leftMostPoint = getLeftmostPoint(pointList);

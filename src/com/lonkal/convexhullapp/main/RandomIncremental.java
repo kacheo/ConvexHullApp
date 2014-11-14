@@ -6,26 +6,11 @@ import java.util.LinkedList;
 
 public class RandomIncremental extends ConvexHullAlgo {
 
-	private LinkedList<Point> convexHullList;
-	private final LinkedList<Point> pointList; // we slowly remove points from
-												// this throughout the algorithm
-
-	public RandomIncremental(LinkedList<Point> ptList) {
-		convexHullList = new LinkedList<Point>();
-		pointList = ptList;
-
-		if (pointList == null) {
-			throw new IllegalArgumentException("Point list was null");
-		}
-
-		if (pointList.size() < 3) {
-			throw new IllegalArgumentException("Point list was less than 3");
-		}
-
-		init();
+	public RandomIncremental(LinkedList<Point> list) {
+		super(list);
 	}
 
-	private void init() {
+	protected void init() {
 		// Pick 3 points for a "triangle"
 		Point p, q, r;
 
@@ -68,7 +53,6 @@ public class RandomIncremental extends ConvexHullAlgo {
 
 	@Override
 	public Line getCurrentStepLine() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

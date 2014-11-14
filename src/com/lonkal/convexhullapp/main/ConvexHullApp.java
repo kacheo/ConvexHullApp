@@ -33,7 +33,6 @@ public class ConvexHullApp {
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("ConvexHullApp");
 		mainFrame.setLayout(new BorderLayout());
-		mainFrame.setVisible(true);
 		mainFrame.setSize(WIDTH, HEIGHT);
 
 		final GraphPanel graphPanel = new GraphPanel();
@@ -91,5 +90,7 @@ public class ConvexHullApp {
 		// MAIN PANEL
 		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);
 		mainFrame.add(topPanel, BorderLayout.NORTH);
+		
+		mainFrame.setVisible(true);
 	}
 }

@@ -129,9 +129,12 @@ public class GraphPanel extends JPanel {
 	}
 
 	public void start() {
-		final JarvisMarch jm = new JarvisMarch(pointList);
+//		final JarvisMarch jm = new JarvisMarch(pointList);
+		final UpperLowerHull ulh = new UpperLowerHull(pointList);
 		ConvexHullApp.numCounterPane.setText("0");
-		cgActionListener.setConvexHullAlgo(jm);
+		cgActionListener.setConvexHullAlgo(ulh);
+
+//		cgActionListener.setConvexHullAlgo(jm);
 
 		taskTimer.start();
 	}
