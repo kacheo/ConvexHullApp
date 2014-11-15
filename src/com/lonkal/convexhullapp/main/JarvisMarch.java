@@ -13,6 +13,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 
 	public JarvisMarch(LinkedList<Point> list) {
 		super(list);
+		init();
 	}
 
 	private int currentIndexOfElement = 0; // Which was the last checked ith

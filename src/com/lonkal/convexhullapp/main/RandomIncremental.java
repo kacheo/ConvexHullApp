@@ -8,6 +8,7 @@ public class RandomIncremental extends ConvexHullAlgo {
 
 	public RandomIncremental(LinkedList<Point> list) {
 		super(list);
+		init();
 	}
 
 	protected void init() {

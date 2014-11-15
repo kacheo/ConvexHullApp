@@ -10,6 +10,8 @@ public abstract class ConvexHullAlgo {
 	protected int stepNum;
 
 	public ConvexHullAlgo(LinkedList<Point> list) {
+		convexHullList = new LinkedList<Point>();
+
 		if (list == null) {
 			throw new IllegalArgumentException("Passed in list was null");
 		}
@@ -19,8 +21,6 @@ public abstract class ConvexHullAlgo {
 			throw new IllegalArgumentException(
 					"Fail... the number of points has to be 3 or more");
 		}
-
-		init();
 	}
 	
 	protected abstract void init();

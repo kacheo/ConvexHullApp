@@ -16,8 +16,8 @@ public class GraphPanel extends JPanel {
 	public final static int DEFAULT_DELAY_MS = 5;
 	private final static int BUFFER_BOUNDS = 5;
 
-	private LinkedList<Point> pointList = new LinkedList<Point>();
-	private LinkedList<Point> convexHullList = new LinkedList<Point>();
+	private LinkedList<Point> pointList;
+	private LinkedList<Point> convexHullList;
 	private Random random = new Random();
 	private Line step;
 
@@ -53,6 +53,12 @@ public class GraphPanel extends JPanel {
 		}
 	}
 
+	public GraphPanel() {
+		convexHullList = new LinkedList<Point>();
+		pointList = new LinkedList<Point>();
+	}
+	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -130,7 +136,7 @@ public class GraphPanel extends JPanel {
 
 	public void start() {
 //		final JarvisMarch jm = new JarvisMarch(pointList);
-		final UpperLowerHull ulh = new UpperLowerHull(pointList);
+		UpperLowerHull ulh = new UpperLowerHull(pointList);
 		ConvexHullApp.numCounterPane.setText("0");
 		cgActionListener.setConvexHullAlgo(ulh);
 
