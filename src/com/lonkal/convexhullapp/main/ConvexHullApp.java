@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -66,9 +67,10 @@ public class ConvexHullApp {
 		numCounterPane.setText("0");
 		topPanel.add(numCounterStaticPane);
 		topPanel.add(numCounterPane);
-		
+
 		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();
+		JComboBox<String> chAlgoSelector = new JComboBox<String>(ConvexHullSettings.CH_ALGORITHMS_LIST);
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
 		JButton computeCHButton = new JButton("Compute Convex Hull");
@@ -81,6 +83,7 @@ public class ConvexHullApp {
 		stopButton.addActionListener(new StopButtonListener(graphPanel));
 		resumeButton.addActionListener(new ResumeButtonListener(graphPanel));
 		
+		toolbarPanel.add(chAlgoSelector);
 		toolbarPanel.add(computeCHButton);
 		toolbarPanel.add(addRandomButton);
 		toolbarPanel.add(clearButton);
