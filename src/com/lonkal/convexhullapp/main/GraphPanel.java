@@ -21,6 +21,8 @@ public class GraphPanel extends JPanel {
 	private Random random = new Random();
 	private Line step;
 
+	private String chAlgorithm = ConvexHullSettings.CH_JARVIS_MARCH_NAME;
+	
 	// We change the actionlistener only, so timer is a final object
 	private CGActionListener cgActionListener = new CGActionListener();
 	private final Timer taskTimer = new Timer(DEFAULT_DELAY_MS,
@@ -128,20 +130,27 @@ public class GraphPanel extends JPanel {
 		convexHullList.clear();
 	}
 
-	public void clear() {
+	public void clear() {		
 		clearConvexHull();
 		clearPoints();
 		clearStep();
 	}
 
 	public void start() {
-//		final JarvisMarch jm = new JarvisMarch(pointList);
-		UpperLowerHull ulh = new UpperLowerHull(pointList);
+		if (chAlgorithm == ConvexHullSettings.CH_JARVIS_MARCH_NAME) {
+			final JarvisMarch jm = new JarvisMarch(pointList);
+			cgActionListener.setConvexHullAlgo(jm);
+		} else if (chAlgorithm == ConvexHullSettings.CH_UPPER_LOWER_NAME) {
+			final UpperLowerHull ulh = new UpperLowerHull(pointList);
+			cgActionListener.setConvexHullAlgo(ulh);
+		} else if (chAlgorithm == ConvexHullSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
+			final RandomIncremental ri = new RandomIncremental(pointList);
+			cgActionListener.setConvexHullAlgo(ri);
+		} else {
+			throw new IllegalStateException("No valid algorithm selected");
+		}
+
 		ConvexHullApp.numCounterPane.setText("0");
-		cgActionListener.setConvexHullAlgo(ulh);
-
-//		cgActionListener.setConvexHullAlgo(jm);
-
 		taskTimer.start();
 	}
 
@@ -164,5 +173,10 @@ public class GraphPanel extends JPanel {
 	public void addPoint(int x, int y) {
 		pointList.add(new Point(x,y));
 		repaint();
+	}
+
+
+	public void setCHAlgorithm(String algoString) {
+		chAlgorithm = algoString;
 	}
 }

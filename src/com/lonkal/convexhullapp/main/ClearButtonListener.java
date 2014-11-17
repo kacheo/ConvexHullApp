@@ -12,6 +12,7 @@ public class ClearButtonListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		graphPanel.stop();
 		graphPanel.clear();
 	}
 
