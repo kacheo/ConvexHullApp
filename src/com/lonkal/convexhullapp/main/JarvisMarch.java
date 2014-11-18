@@ -95,7 +95,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 		return leftMostPoint;
 	}
 
-	public Line getCurrentStepLine() {
-		return new Line(p, q);
+	public Line getCurrentStepLines() {
+		return new Line(q, r);
 	}
 }
