@@ -1,6 +1,8 @@
 package com.lonkal.convexhullapp.main;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -70,13 +72,21 @@ public class ConvexHullApp {
 
 		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();
-		JComboBox<String> chAlgoSelector = new JComboBox<String>(ConvexHullSettings.CH_ALGORITHMS_LIST);
+		final JComboBox<String> chAlgoSelector = new JComboBox<String>(ConvexHullSettings.CH_ALGORITHMS_LIST);
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
 		JButton computeCHButton = new JButton("Compute Convex Hull");
 		JButton stopButton = new JButton("Stop");
 		JButton resumeButton = new JButton("Resume");
 		
+		chAlgoSelector.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				graphPanel.setCHAlgorithm(chAlgoSelector.getSelectedItem().toString());
+			}
+			
+		});
 		addRandomButton.addActionListener(new RandomButtonListener(graphPanel));
 		clearButton.addActionListener(new ClearButtonListener(graphPanel));
 		computeCHButton.addActionListener(new ComputeCHButton(graphPanel));

@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 public class GraphPanel extends JPanel {
 
-	public final static int DEFAULT_DELAY_MS = 5;
+	public final static int DEFAULT_DELAY_MS = 50;
 	private final static int BUFFER_BOUNDS = 5;
 
 	private LinkedList<Point> pointList;
@@ -39,19 +39,16 @@ public class GraphPanel extends JPanel {
 				step = convexHullAlgo.getCurrentStepLine();
 				convexHullAlgo.step();
 				setConvexHullList(convexHullAlgo.getConvexHullList());
-				repaint();
 			} else {
+				step = null; // remove remaining steps
 				stop();
 			}
+			repaint();
 		}
 
 		public void setConvexHullAlgo(ConvexHullAlgo cha) {
 			convexHullAlgo = cha;
 
-		}
-
-		public ConvexHullAlgo getConvexHullAlgo() {
-			return convexHullAlgo;
 		}
 	}
 
@@ -140,9 +137,9 @@ public class GraphPanel extends JPanel {
 		if (chAlgorithm == ConvexHullSettings.CH_JARVIS_MARCH_NAME) {
 			final JarvisMarch jm = new JarvisMarch(pointList);
 			cgActionListener.setConvexHullAlgo(jm);
-		} else if (chAlgorithm == ConvexHullSettings.CH_UPPER_LOWER_NAME) {
-			final UpperLowerHull ulh = new UpperLowerHull(pointList);
-			cgActionListener.setConvexHullAlgo(ulh);
+		} else if (chAlgorithm == ConvexHullSettings.CH_MONOTONE_CHAIN_NAME) {
+			final MonotoneChain mc = new MonotoneChain(pointList);
+			cgActionListener.setConvexHullAlgo(mc);
 		} else if (chAlgorithm == ConvexHullSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
 			final RandomIncremental ri = new RandomIncremental(pointList);
 			cgActionListener.setConvexHullAlgo(ri);
