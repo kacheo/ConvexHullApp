@@ -10,7 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * The "main" class that calls the main method and initializes everything
@@ -66,13 +69,49 @@ public class ConvexHullApp {
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
 
 		// NORTH PANEL
-		JPanel topPanel = new JPanel();
+		JPanel topPanel = new JPanel(new BorderLayout());
+		JPanel numCounterHolderPane = new JPanel();
 		JTextPane numCounterStaticPane = new JTextPane(); // Holds the step
 		numCounterStaticPane.setText("Step Number: ");
 		numCounterPane = new JTextPane();
 		numCounterPane.setText("0");
-		topPanel.add(numCounterStaticPane);
-		topPanel.add(numCounterPane);
+		numCounterHolderPane.add(numCounterStaticPane);
+		numCounterHolderPane.add(numCounterPane);
+
+		JPanel speedBarHolderPane = new JPanel();
+		final JTextPane numStepPerSecondPane = new JTextPane();
+		numStepPerSecondPane.setText(GraphPanel.DEFAULT_DELAY_MS
+				+ " ms between steps");
+
+		// SLIDER
+		final JSlider stepSpeedSlider = new JSlider(JSlider.HORIZONTAL,
+				GraphPanel.MIN_DELAY_MS, GraphPanel.MAX_DELAY_MS,
+				GraphPanel.DEFAULT_DELAY_MS);
+		stepSpeedSlider.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				graphPanel.setSpeed(stepSpeedSlider.getValue());
+				int delayPerStep = stepSpeedSlider.getValue();
+				if (delayPerStep == 0) {
+					numStepPerSecondPane.setText("No Delay!");
+					return;
+				}
+				numStepPerSecondPane
+						.setText(delayPerStep + " ms between steps");
+			}
+
+		});
+		stepSpeedSlider.setMajorTickSpacing(100);
+		stepSpeedSlider.setMinorTickSpacing(20);
+		stepSpeedSlider.setPaintTicks(true);
+		stepSpeedSlider.setPaintLabels(true);
+
+		speedBarHolderPane.add(stepSpeedSlider);
+		speedBarHolderPane.add(numStepPerSecondPane);
+
+		topPanel.add(numCounterHolderPane, BorderLayout.WEST);
+		topPanel.add(speedBarHolderPane, BorderLayout.EAST);
 
 		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();

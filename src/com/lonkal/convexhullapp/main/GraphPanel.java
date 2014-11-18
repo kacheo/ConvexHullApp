@@ -13,8 +13,11 @@ import javax.swing.Timer;
 
 public class GraphPanel extends JPanel {
 
-	public final static int DEFAULT_DELAY_MS = 50;
-	private final static int BUFFER_BOUNDS = 5;
+	public final static int DEFAULT_DELAY_MS = 5;
+	public final static int MIN_DELAY_MS = 0;
+	public final static int MAX_DELAY_MS = 500;
+
+	private final static int BUFFER_BOUNDS_PX = 5;
 
 	private LinkedList<Point> pointList;
 	private LinkedList<Point> convexHullList;
@@ -89,10 +92,10 @@ public class GraphPanel extends JPanel {
 
 	public void addRandomPoint() {
 		for (int i = 0; i < 50; i++) {
-			int x = random.nextInt(getWidth() - BUFFER_BOUNDS * 2 + 1)
-					+ BUFFER_BOUNDS;
-			int y = random.nextInt(getHeight() - BUFFER_BOUNDS * 2 + 1)
-					+ BUFFER_BOUNDS;
+			int x = random.nextInt(getWidth() - BUFFER_BOUNDS_PX * 2 + 1)
+					+ BUFFER_BOUNDS_PX;
+			int y = random.nextInt(getHeight() - BUFFER_BOUNDS_PX * 2 + 1)
+					+ BUFFER_BOUNDS_PX;
 
 			Point p = new Point(x, y);
 			pointList.add(p);
@@ -173,5 +176,9 @@ public class GraphPanel extends JPanel {
 
 	public void setCHAlgorithm(String algoString) {
 		chAlgorithm = algoString;
+	}
+
+	public void setSpeed(int delay) {
+		taskTimer.setDelay(delay);
 	}
 }
