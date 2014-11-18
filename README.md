@@ -13,4 +13,8 @@ Java swing app to compute convex hulls.
 
 >Randomized Incremental ()
 
->Upper Lower Hull ()
+>Quickhull ()
+
+>Divide and conquer ()
+
+>Monotone Chain (x)
