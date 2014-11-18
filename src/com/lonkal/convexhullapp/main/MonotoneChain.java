@@ -26,6 +26,8 @@ public class MonotoneChain extends ConvexHullAlgo {
 			return;
 		}
 
+		stepNum++;
+
 		if (!upperHullIsDone) {
 			convexHullList = upperHull;
 
