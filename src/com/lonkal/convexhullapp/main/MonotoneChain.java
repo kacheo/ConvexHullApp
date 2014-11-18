@@ -29,7 +29,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 		if (!upperHullIsDone) {
 			convexHullList = upperHull;
 
-			if (i < 0) {				
+			if (i < 0) {
 				upperHullIsDone = true;
 				convexHullList = upperHull;
 				i = 0; // Reset i back to 0 for lower hull calculation

@@ -22,7 +22,7 @@ public class RandomIncremental extends ConvexHullAlgo {
 			q = pointList.get(1);
 			r = pointList.get(2);
 		} while (Primitives.orientation(p, q, r) == 0);
-		
+
 		convexHullList.add(p);
 		convexHullList.add(q);
 		convexHullList.add(r);
@@ -31,9 +31,9 @@ public class RandomIncremental extends ConvexHullAlgo {
 	@Override
 	public void step() {
 		// Iterate pointList
-		
+
 		// If p is in current CH, remove it
-		
+
 		// Else add to current CH and create new CH list
 	}
 

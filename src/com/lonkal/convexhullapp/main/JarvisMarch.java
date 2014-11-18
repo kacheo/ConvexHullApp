@@ -18,12 +18,11 @@ public class JarvisMarch extends ConvexHullAlgo {
 
 	private int currentIndexOfElement = 0; // Which was the last checked ith
 											// point of pointList.
-	private Point p,q,r;
-
+	private Point p, q, r;
 
 	private boolean isDone = false;
-	//private boolean isRunning = false;
 
+	// private boolean isRunning = false;
 
 	public void runEntirely() {
 		while (!isDone) {

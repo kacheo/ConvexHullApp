@@ -22,9 +22,9 @@ public abstract class ConvexHullAlgo {
 					"Fail... the number of points has to be 3 or more");
 		}
 	}
-	
+
 	protected abstract void init();
-	
+
 	/**
 	 * Step once through an algorithm
 	 */
@@ -32,12 +32,14 @@ public abstract class ConvexHullAlgo {
 
 	/**
 	 * Check if the algorithm is done yet
+	 * 
 	 * @return boolean of whether it is done
 	 */
 	public abstract boolean isDone();
 
 	/**
 	 * Get the step number
+	 * 
 	 * @return step number
 	 */
 	public int getCurrentStep() {
@@ -46,6 +48,7 @@ public abstract class ConvexHullAlgo {
 
 	/**
 	 * Return the pending list of points in convex hull
+	 * 
 	 * @return linkedlist of ch pts
 	 */
 	public LinkedList<Point> getConvexHullList() {
@@ -54,6 +57,7 @@ public abstract class ConvexHullAlgo {
 
 	/**
 	 * Any intermediary line represented by a step
+	 * 
 	 * @return Line of step
 	 */
 	public abstract Line getCurrentStepLine();

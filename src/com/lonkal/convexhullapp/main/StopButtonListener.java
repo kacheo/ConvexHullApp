@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class StopButtonListener implements ActionListener {
 	private GraphPanel graphPanel;
-	
+
 	public StopButtonListener(GraphPanel graphPanel) {
 		this.graphPanel = graphPanel;
 	}

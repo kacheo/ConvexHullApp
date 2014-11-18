@@ -26,7 +26,7 @@ public class ConvexHullApp {
 	public static final int HEIGHT = 800;
 
 	public static JTextPane numCounterPane;
-	
+
 	public static void main(String[] args) {
 		initializeGUI();
 	}
@@ -47,23 +47,27 @@ public class ConvexHullApp {
 			}
 
 			@Override
-			public void mousePressed(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {
+			}
 
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+			}
 
 			@Override
-			public void mouseEntered(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {
+			}
 
 			@Override
-			public void mouseExited(MouseEvent e) {}
-			
+			public void mouseExited(MouseEvent e) {
+			}
+
 		});
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
 
 		// NORTH PANEL
 		JPanel topPanel = new JPanel();
-		JTextPane numCounterStaticPane = new JTextPane(); //Holds the step
+		JTextPane numCounterStaticPane = new JTextPane(); // Holds the step
 		numCounterStaticPane.setText("Step Number: ");
 		numCounterPane = new JTextPane();
 		numCounterPane.setText("0");
@@ -72,27 +76,29 @@ public class ConvexHullApp {
 
 		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();
-		final JComboBox<String> chAlgoSelector = new JComboBox<String>(ConvexHullSettings.CH_ALGORITHMS_LIST);
+		final JComboBox<String> chAlgoSelector = new JComboBox<String>(
+				ConvexHullSettings.CH_ALGORITHMS_LIST);
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
 		JButton computeCHButton = new JButton("Compute Convex Hull");
 		JButton stopButton = new JButton("Stop");
 		JButton resumeButton = new JButton("Resume");
-		
-		chAlgoSelector.addActionListener(new ActionListener(){
+
+		chAlgoSelector.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				graphPanel.setCHAlgorithm(chAlgoSelector.getSelectedItem().toString());
+				graphPanel.setCHAlgorithm(chAlgoSelector.getSelectedItem()
+						.toString());
 			}
-			
+
 		});
 		addRandomButton.addActionListener(new RandomButtonListener(graphPanel));
 		clearButton.addActionListener(new ClearButtonListener(graphPanel));
 		computeCHButton.addActionListener(new ComputeCHButton(graphPanel));
 		stopButton.addActionListener(new StopButtonListener(graphPanel));
 		resumeButton.addActionListener(new ResumeButtonListener(graphPanel));
-		
+
 		toolbarPanel.add(chAlgoSelector);
 		toolbarPanel.add(computeCHButton);
 		toolbarPanel.add(addRandomButton);
@@ -103,7 +109,7 @@ public class ConvexHullApp {
 		// MAIN PANEL
 		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);
 		mainFrame.add(topPanel, BorderLayout.NORTH);
-		
+
 		mainFrame.setVisible(true);
 	}
 }

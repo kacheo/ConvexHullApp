@@ -22,7 +22,7 @@ public class GraphPanel extends JPanel {
 	private Line step;
 
 	private String chAlgorithm = ConvexHullSettings.CH_JARVIS_MARCH_NAME;
-	
+
 	// We change the actionlistener only, so timer is a final object
 	private CGActionListener cgActionListener = new CGActionListener();
 	private final Timer taskTimer = new Timer(DEFAULT_DELAY_MS,
@@ -56,8 +56,7 @@ public class GraphPanel extends JPanel {
 		convexHullList = new LinkedList<Point>();
 		pointList = new LinkedList<Point>();
 	}
-	
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -127,7 +126,7 @@ public class GraphPanel extends JPanel {
 		convexHullList.clear();
 	}
 
-	public void clear() {		
+	public void clear() {
 		clearConvexHull();
 		clearPoints();
 		clearStep();
@@ -168,10 +167,9 @@ public class GraphPanel extends JPanel {
 	}
 
 	public void addPoint(int x, int y) {
-		pointList.add(new Point(x,y));
+		pointList.add(new Point(x, y));
 		repaint();
 	}
-
 
 	public void setCHAlgorithm(String algoString) {
 		chAlgorithm = algoString;
