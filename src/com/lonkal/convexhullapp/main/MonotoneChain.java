@@ -108,10 +108,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 
 	@Override
 	public Line getCurrentStepLine() {
-		if (q == null || r == null)
-			return null;
-
-		return new Line(q, r);
+		return null;
 	}
 
 	public LinkedList<Point> getCurrentStepPoints() {
@@ -123,6 +120,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 		points.add(p);
 		points.add(q);
 		points.add(r);
+		points.add(p);
 
 		return points;
 	}

@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
 
 	public final static int DEFAULT_DELAY_MS = 5;

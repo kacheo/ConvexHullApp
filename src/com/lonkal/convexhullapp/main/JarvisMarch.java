@@ -98,7 +98,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 	// TODO : return list of lines/points instead of just 1 line, 
 	// a step should be a triple of points in a left test
 	public Line getCurrentStepLine() {
-		return new Line(q, r);
+		return null;
 	}
 
 	@Override
@@ -111,6 +111,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 		points.add(p);
 		points.add(q);
 		points.add(r);
+		points.add(p);
 
 		return points;
 	}
