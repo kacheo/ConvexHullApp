@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextPane;
@@ -110,13 +111,28 @@ public class ConvexHullApp {
 		speedBarHolderPane.add(stepSpeedSlider);
 		speedBarHolderPane.add(numStepPerSecondPane);
 
+		JPanel aboutPanel = new JPanel();
+		JButton aboutButton = new JButton("About");
+		aboutButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, CHAppSettings.ABOUT_APP_MESSAGE,
+						"About this application",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+
+		aboutPanel.add(aboutButton);
+
+		topPanel.add(aboutPanel, BorderLayout.CENTER);
 		topPanel.add(numCounterHolderPane, BorderLayout.WEST);
 		topPanel.add(speedBarHolderPane, BorderLayout.EAST);
 
 		// SOUTH PANEL
 		JPanel toolbarPanel = new JPanel();
 		final JComboBox<String> chAlgoSelector = new JComboBox<String>(
-				ConvexHullSettings.CH_ALGORITHMS_LIST);
+				CHAppSettings.CH_ALGORITHMS_LIST);
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
 		JButton computeCHButton = new JButton("Compute Convex Hull");

@@ -21,10 +21,12 @@ public class GraphPanel extends JPanel {
 
 	private LinkedList<Point> pointList;
 	private LinkedList<Point> convexHullList;
+	private LinkedList<Point> stepPointList;
+
 	private Random random = new Random();
 	private Line step;
 
-	private String chAlgorithm = ConvexHullSettings.CH_JARVIS_MARCH_NAME;
+	private String chAlgorithm = CHAppSettings.CH_JARVIS_MARCH_NAME;
 
 	// We change the actionlistener only, so timer is a final object
 	private CGActionListener cgActionListener = new CGActionListener();
@@ -40,10 +42,12 @@ public class GraphPanel extends JPanel {
 				int numStep = convexHullAlgo.getCurrentStep();
 				ConvexHullApp.numCounterPane.setText(Integer.toString(numStep));
 				step = convexHullAlgo.getCurrentStepLine();
+				stepPointList = convexHullAlgo.getCurrentStepPoints();
 				convexHullAlgo.step();
 				setConvexHullList(convexHullAlgo.getConvexHullList());
 			} else {
 				step = null; // remove remaining steps
+				stepPointList = null;
 				stop();
 			}
 			repaint();
@@ -77,6 +81,16 @@ public class GraphPanel extends JPanel {
 			g.setColor(new Color(0, 100, 255));
 			g.drawLine(step.getPoint1().x, step.getPoint1().y,
 					step.getPoint2().x, step.getPoint2().y);
+		}
+		
+		// Draw step points
+		if (stepPointList != null) {
+			g.setColor(new Color(0, 100, 255));
+			for (int i = 0; i < stepPointList.size() - 1; i++) {
+				g.drawLine(stepPointList.get(i).x, stepPointList.get(i).y,
+						stepPointList.get(i + 1).x,
+						stepPointList.get(i + 1).y);
+			}
 		}
 
 		g.setColor(new Color(161, 0, 0));
@@ -136,13 +150,13 @@ public class GraphPanel extends JPanel {
 	}
 
 	public void start() {
-		if (chAlgorithm == ConvexHullSettings.CH_JARVIS_MARCH_NAME) {
+		if (chAlgorithm == CHAppSettings.CH_JARVIS_MARCH_NAME) {
 			final JarvisMarch jm = new JarvisMarch(pointList);
 			cgActionListener.setConvexHullAlgo(jm);
-		} else if (chAlgorithm == ConvexHullSettings.CH_MONOTONE_CHAIN_NAME) {
+		} else if (chAlgorithm == CHAppSettings.CH_MONOTONE_CHAIN_NAME) {
 			final MonotoneChain mc = new MonotoneChain(pointList);
 			cgActionListener.setConvexHullAlgo(mc);
-		} else if (chAlgorithm == ConvexHullSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
+		} else if (chAlgorithm == CHAppSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
 			final RandomIncremental ri = new RandomIncremental(pointList);
 			cgActionListener.setConvexHullAlgo(ri);
 		} else {

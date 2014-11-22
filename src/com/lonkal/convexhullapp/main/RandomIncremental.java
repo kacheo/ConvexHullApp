@@ -57,4 +57,9 @@ public class RandomIncremental extends ConvexHullAlgo {
 		return null;
 	}
 
+	@Override
+	public LinkedList<Point> getCurrentStepPoints() {
+		return null;
+	}
+
 }

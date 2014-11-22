@@ -100,4 +100,18 @@ public class JarvisMarch extends ConvexHullAlgo {
 	public Line getCurrentStepLine() {
 		return new Line(q, r);
 	}
+
+	@Override
+	public LinkedList<Point> getCurrentStepPoints() {
+		if (p == null || q == null || r == null) {
+			return null;
+		}
+
+		LinkedList<Point> points = new LinkedList<Point>();
+		points.add(p);
+		points.add(q);
+		points.add(r);
+
+		return points;
+	}
 }

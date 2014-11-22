@@ -62,4 +62,9 @@ public abstract class ConvexHullAlgo {
 	 */
 	public abstract Line getCurrentStepLine();
 
+	/**
+	 * Any points of a polygon that an algo wants to print after each step.
+	 * @return List of points of a polygon
+	 */
+	public abstract LinkedList<Point> getCurrentStepPoints();
 }
