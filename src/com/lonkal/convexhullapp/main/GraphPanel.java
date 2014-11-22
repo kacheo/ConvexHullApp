@@ -95,6 +95,7 @@ public class GraphPanel extends JPanel {
 		}
 
 		g.setColor(new Color(161, 0, 0));
+		System.out.println(convexHullList);
 		// Draw convex hull
 		if (convexHullList != null) {
 			for (int i = 0; i < convexHullList.size() - 1; i++) {
@@ -160,6 +161,9 @@ public class GraphPanel extends JPanel {
 		} else if (chAlgorithm == CHAppSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
 			final RandomIncremental ri = new RandomIncremental(pointList);
 			cgActionListener.setConvexHullAlgo(ri);
+		} else if (chAlgorithm == CHAppSettings.CH_INCREMENTAL_NAME) {
+			final IncrementalCH ich = new IncrementalCH(pointList);
+			cgActionListener.setConvexHullAlgo(ich);
 		} else {
 			throw new IllegalStateException("No valid algorithm selected");
 		}
