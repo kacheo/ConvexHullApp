@@ -83,14 +83,17 @@ public class GraphPanel extends JPanel {
 			g.drawLine(step.getPoint1().x, step.getPoint1().y,
 					step.getPoint2().x, step.getPoint2().y);
 		}
-		
+
 		// Draw step points
 		if (stepPointList != null) {
 			g.setColor(new Color(50, 250, 50));
 			for (int i = 0; i < stepPointList.size() - 1; i++) {
+				// Mark these points, they represent a left test, or some
+				// intermediary step
 				g.drawLine(stepPointList.get(i).x, stepPointList.get(i).y,
-						stepPointList.get(i + 1).x,
-						stepPointList.get(i + 1).y);
+						stepPointList.get(i + 1).x, stepPointList.get(i + 1).y);
+				g.fillOval(stepPointList.get(i).x - 10,
+						stepPointList.get(i).y - 10, 20, 20);
 			}
 		}
 
@@ -128,6 +131,7 @@ public class GraphPanel extends JPanel {
 		stepPointList = null;
 		repaint();
 	}
+
 	public LinkedList<Point> getPointList() {
 		return pointList;
 	}
