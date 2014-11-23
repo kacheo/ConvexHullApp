@@ -20,6 +20,8 @@ Java swing app to compute convex hulls.
 
 >Monotone Chain (x)
 
-Small demo:
+>Sweephull(x) - still buggy, but works for the most part,
+
+Small demo of v 1.0:
 
 ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/convexhulldemo1.gif)
