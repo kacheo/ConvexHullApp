@@ -79,14 +79,14 @@ public class GraphPanel extends JPanel {
 
 		// Draw a step
 		if (step != null) {
-			g.setColor(new Color(0, 100, 255));
+			g.setColor(new Color(0, 0, 255));
 			g.drawLine(step.getPoint1().x, step.getPoint1().y,
 					step.getPoint2().x, step.getPoint2().y);
 		}
 		
 		// Draw step points
 		if (stepPointList != null) {
-			g.setColor(new Color(0, 100, 255));
+			g.setColor(new Color(50, 250, 50));
 			for (int i = 0; i < stepPointList.size() - 1; i++) {
 				g.drawLine(stepPointList.get(i).x, stepPointList.get(i).y,
 						stepPointList.get(i + 1).x,
@@ -94,10 +94,9 @@ public class GraphPanel extends JPanel {
 			}
 		}
 
-		g.setColor(new Color(161, 0, 0));
-		System.out.println(convexHullList);
 		// Draw convex hull
 		if (convexHullList != null) {
+			g.setColor(new Color(161, 0, 0));
 			for (int i = 0; i < convexHullList.size() - 1; i++) {
 				g.drawLine(convexHullList.get(i).x, convexHullList.get(i).y,
 						convexHullList.get(i + 1).x,
@@ -125,6 +124,10 @@ public class GraphPanel extends JPanel {
 		repaint();
 	}
 
+	public void clearStepPoints() {
+		stepPointList = null;
+		repaint();
+	}
 	public LinkedList<Point> getPointList() {
 		return pointList;
 	}
@@ -148,6 +151,7 @@ public class GraphPanel extends JPanel {
 	public void clear() {
 		clearConvexHull();
 		clearPoints();
+		clearStepPoints();
 		clearStep();
 	}
 
@@ -161,8 +165,8 @@ public class GraphPanel extends JPanel {
 		} else if (chAlgorithm == CHAppSettings.CH_RANDOMIZED_INCREMENTAL_NAME) {
 			final RandomIncremental ri = new RandomIncremental(pointList);
 			cgActionListener.setConvexHullAlgo(ri);
-		} else if (chAlgorithm == CHAppSettings.CH_INCREMENTAL_NAME) {
-			final IncrementalCH ich = new IncrementalCH(pointList);
+		} else if (chAlgorithm == CHAppSettings.CH_SWEEPHULL_NAME) {
+			final SweepHull ich = new SweepHull(pointList);
 			cgActionListener.setConvexHullAlgo(ich);
 		} else {
 			throw new IllegalStateException("No valid algorithm selected");
