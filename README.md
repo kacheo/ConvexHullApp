@@ -1,7 +1,9 @@
 ConvexHullApp
 =============
 
-Java swing app to compute convex hulls.
+Summary
+----------------
+This is a Java Swing application that can simulate computing of convex hulls.
 
 -Can create random points, uniformly distributed on the rectangle
   - working on creating points within a ellipse
