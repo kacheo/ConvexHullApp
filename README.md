@@ -22,6 +22,13 @@ Java swing app to compute convex hulls.
 
 >Sweephull(x) - still buggy, but works for the most part,
 
-Small demo of v 1.0:
+App In Action
+------------
+> Jarvis March
+  ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/jarvismarchdemo.gif)
 
-![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/convexhulldemo1.gif)
+> Monotone Chain
+  ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/monotonechaindemo.gif)
+
+> Sweephull
+  ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/sweephulldemo.gif)
