@@ -68,13 +68,14 @@ public class GraphPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.clearRect(0, 0, ConvexHullApp.HEIGHT, ConvexHullApp.WIDTH);
-
+		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, ConvexHullApp.HEIGHT, ConvexHullApp.WIDTH);
+		
 		// Draw the points
 		for (Point p : pointList) {
-			g.setColor(new Color(0, 0, 0));
+			g.setColor(Color.WHITE);
 			g.drawRect((int) p.getX() - 1, (int) p.getY() - 1, 2, 2);
-
 		}
 
 		// Draw a step

@@ -1,6 +1,8 @@
 package com.lonkal.convexhullapp.main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -41,8 +43,10 @@ public class ConvexHullApp {
 		mainFrame.setTitle("ConvexHullApp");
 		mainFrame.setLayout(new BorderLayout());
 		mainFrame.setSize(WIDTH, HEIGHT);
+		mainFrame.setResizable(false);
 
 		final GraphPanel graphPanel = new GraphPanel();
+		graphPanel.setPreferredSize(new Dimension(WIDTH,WIDTH));
 		graphPanel.addMouseListener(new MouseListener() {
 
 			@Override
@@ -68,19 +72,25 @@ public class ConvexHullApp {
 
 		});
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
+		Color mainFrameBgColor = mainFrame.getBackground();
 
 		// NORTH PANEL
 		JPanel topPanel = new JPanel(new BorderLayout());
 		JPanel numCounterHolderPane = new JPanel();
 		JTextPane numCounterStaticPane = new JTextPane(); // Holds the step
 		numCounterStaticPane.setText("Step Number: ");
+		numCounterStaticPane.setBackground(mainFrameBgColor);
+
 		numCounterPane = new JTextPane();
 		numCounterPane.setText("0");
+		numCounterPane.setBackground(mainFrameBgColor);
+		
 		numCounterHolderPane.add(numCounterStaticPane);
 		numCounterHolderPane.add(numCounterPane);
-
+	
 		JPanel speedBarHolderPane = new JPanel();
 		final JTextPane numStepPerSecondPane = new JTextPane();
+		numStepPerSecondPane.setBackground(mainFrameBgColor);
 		numStepPerSecondPane.setText(GraphPanel.DEFAULT_DELAY_MS
 				+ " ms between steps");
 
