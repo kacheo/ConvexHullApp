@@ -45,6 +45,10 @@ public class ConvexHullApp {
 		mainFrame.setSize(WIDTH, HEIGHT);
 		mainFrame.setResizable(false);
 
+		// Use this for later, when we create the other panels to match the background.
+		Color mainFrameBgColor = mainFrame.getBackground();
+
+		// Center Panel
 		final GraphPanel graphPanel = new GraphPanel();
 		graphPanel.setPreferredSize(new Dimension(WIDTH,WIDTH));
 		graphPanel.addMouseListener(new MouseListener() {
@@ -72,7 +76,6 @@ public class ConvexHullApp {
 
 		});
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
-		Color mainFrameBgColor = mainFrame.getBackground();
 
 		// NORTH PANEL
 		JPanel topPanel = new JPanel(new BorderLayout());
@@ -146,8 +149,7 @@ public class ConvexHullApp {
 		JButton addRandomButton = new JButton("Generate Random Points");
 		JButton clearButton = new JButton("Clear");
 		JButton computeCHButton = new JButton("Compute Convex Hull");
-		JButton stopButton = new JButton("Stop");
-		JButton resumeButton = new JButton("Resume");
+		JButton resumeButton = new JButton("Run/Stop");
 
 		chAlgoSelector.addActionListener(new ActionListener() {
 
@@ -161,15 +163,13 @@ public class ConvexHullApp {
 		addRandomButton.addActionListener(new RandomButtonListener(graphPanel));
 		clearButton.addActionListener(new ClearButtonListener(graphPanel));
 		computeCHButton.addActionListener(new ComputeCHButton(graphPanel));
-		stopButton.addActionListener(new StopButtonListener(graphPanel));
-		resumeButton.addActionListener(new ResumeButtonListener(graphPanel));
+		resumeButton.addActionListener(new ToggleRunButtonListener(graphPanel));
 
 		toolbarPanel.add(chAlgoSelector);
 		toolbarPanel.add(computeCHButton);
 		toolbarPanel.add(addRandomButton);
 		toolbarPanel.add(clearButton);
 		toolbarPanel.add(resumeButton);
-		toolbarPanel.add(stopButton);
 
 		// MAIN PANEL
 		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);

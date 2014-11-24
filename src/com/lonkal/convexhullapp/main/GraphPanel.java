@@ -209,4 +209,8 @@ public class GraphPanel extends JPanel {
 	public void setSpeed(int delay) {
 		taskTimer.setDelay(delay);
 	}
+
+	public boolean isRunning() {
+		return taskTimer.isRunning();
+	}
 }
