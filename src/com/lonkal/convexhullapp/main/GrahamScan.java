@@ -6,6 +6,14 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * Graham Scan algorithm 1. Sorts the points based on angle 2. Push point if
+ * Left turn 3. Pop point if Right turn
+ * 
+ * @author Kal
+ *
+ */
+
 public class GrahamScan extends ConvexHullAlgo {
 
 	private LinkedList<Point> stepPointList;
@@ -38,7 +46,7 @@ public class GrahamScan extends ConvexHullAlgo {
 			// comparisonPoint is default bigger then anything, to be at the end
 			if (p1 == comparisonPoint) {
 				return 1;
-			} else if (p2 == comparisonPoint){
+			} else if (p2 == comparisonPoint) {
 				return -1;
 			}
 
@@ -120,10 +128,10 @@ public class GrahamScan extends ConvexHullAlgo {
 		r = pointList.get(i);
 
 		if (Primitives.orientation(p, q, r) <= 1 || i == pointList.size() - 1) {
-			convexHullList.add(r); // We're good
+			convexHullList.add(r); // Push because it's a left turn
 			i++;
 		} else if (Primitives.orientation(p, q, r) == 2) {
-			convexHullList.remove(q);
+			convexHullList.remove(q); // Pop off the chain
 		}
 	}
 
@@ -147,6 +155,7 @@ public class GrahamScan extends ConvexHullAlgo {
 		stepPointList.add(p);
 		stepPointList.add(q);
 		stepPointList.add(r);
+
 		return stepPointList;
 	}
 
