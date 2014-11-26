@@ -5,24 +5,26 @@ Summary
 ----------------
 This is a Java Swing application that can simulate computing of convex hulls.
 
--Can create random points, uniformly distributed on the rectangle
+- Can create random points, uniformly distributed on the rectangle
   - working on creating points within a ellipse
 
--Can support users putting their own points via click
+- Can support users putting their own points via click
 
--Algorithms:
-
->Jarvis march (x)
-
->Randomized Incremental ()
-
->Quickhull ()
-
->Divide and conquer ()
-
->Monotone Chain (x)
-
->Sweephull(x) - still buggy, but works for the most part,
+> Algorithms:
+  
+  - Divide and conquer ()
+  
+  - Graham Scan (x)
+  
+  - Jarvis march (x)
+  
+  - Monotone Chain (x)
+  
+  - Quickhull ()
+  
+  - Randomized Incremental ()
+  
+  - Sweephull(x) - still buggy, but works for the most part,
 
 FAQ
 ----------------
