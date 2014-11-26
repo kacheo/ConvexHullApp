@@ -173,6 +173,9 @@ public class GraphPanel extends JPanel {
 		} else if (chAlgorithm == CHAppSettings.CH_SWEEPHULL_NAME) {
 			final SweepHull ich = new SweepHull(pointList);
 			cgActionListener.setConvexHullAlgo(ich);
+		} else if (chAlgorithm == CHAppSettings.CH_GRAHAM_SCAN_NAME) {
+			final GrahamScan gs = new GrahamScan(pointList);
+			cgActionListener.setConvexHullAlgo(gs);
 		} else {
 			throw new IllegalStateException("No valid algorithm selected");
 		}

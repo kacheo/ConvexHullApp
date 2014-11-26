@@ -45,12 +45,13 @@ public class ConvexHullApp {
 		mainFrame.setSize(WIDTH, HEIGHT);
 		mainFrame.setResizable(false);
 
-		// Use this for later, when we create the other panels to match the background.
+		// Use this for later, when we create the other panels to match the
+		// background.
 		Color mainFrameBgColor = mainFrame.getBackground();
 
 		// Center Panel
 		final GraphPanel graphPanel = new GraphPanel();
-		graphPanel.setPreferredSize(new Dimension(WIDTH,WIDTH));
+		graphPanel.setPreferredSize(new Dimension(WIDTH, WIDTH));
 		graphPanel.addMouseListener(new MouseListener() {
 
 			@Override
@@ -87,10 +88,10 @@ public class ConvexHullApp {
 		numCounterPane = new JTextPane();
 		numCounterPane.setText("0");
 		numCounterPane.setBackground(mainFrameBgColor);
-		
+
 		numCounterHolderPane.add(numCounterStaticPane);
 		numCounterHolderPane.add(numCounterPane);
-	
+
 		JPanel speedBarHolderPane = new JPanel();
 		final JTextPane numStepPerSecondPane = new JTextPane();
 		numStepPerSecondPane.setBackground(mainFrameBgColor);
@@ -116,6 +117,7 @@ public class ConvexHullApp {
 			}
 
 		});
+
 		stepSpeedSlider.setMajorTickSpacing(100);
 		stepSpeedSlider.setMinorTickSpacing(20);
 		stepSpeedSlider.setPaintTicks(true);
@@ -130,7 +132,8 @@ public class ConvexHullApp {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, CHAppSettings.ABOUT_APP_MESSAGE,
+				JOptionPane.showMessageDialog(null,
+						CHAppSettings.ABOUT_APP_MESSAGE,
 						"About this application",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
