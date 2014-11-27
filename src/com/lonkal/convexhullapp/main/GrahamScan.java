@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * Left turn 3. Pop point if Right turn
  * 
  * @author Kal
- *
+ * 
  */
 
 public class GrahamScan extends ConvexHullAlgo {
@@ -72,14 +72,22 @@ public class GrahamScan extends ConvexHullAlgo {
 
 			// We are forced to do this since the values are doubles
 			// and the difference could be below 1 which means it gets
-			// casted to 0 :<
+			// casted to 0 :(
 
 			if (angleOfP1 > angleOfP2) {
 				return 1;
 			} else if (angleOfP2 > angleOfP1) {
 				return -1;
 			} else {
-				return 0;
+				// The point with lesser X is considered "bigger" in the
+				// sorting of angles
+				if (p1.getX() < p2.getX()) {
+					return 1;
+				} else if (p2.getX() > p1.getX()) {
+					return -1;
+				} else {
+					return 0;
+				}
 			}
 		}
 	}
