@@ -1,7 +1,10 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.algorithms;
 
 import java.awt.Point;
 import java.util.LinkedList;
+
+import com.lonkal.convexhullapp.util.Line;
+import com.lonkal.convexhullapp.util.Primitives;
 
 /**
  * A class that represents an algorithm called Jarvis March

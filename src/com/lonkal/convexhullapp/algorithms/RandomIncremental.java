@@ -1,8 +1,11 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.algorithms;
 
 import java.awt.Point;
 import java.util.Collections;
 import java.util.LinkedList;
+
+import com.lonkal.convexhullapp.util.Line;
+import com.lonkal.convexhullapp.util.Primitives;
 
 public class RandomIncremental extends ConvexHullAlgo {
 

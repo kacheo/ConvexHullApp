@@ -1,10 +1,13 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.algorithms;
 
 import java.awt.Point;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import com.lonkal.convexhullapp.util.Line;
+import com.lonkal.convexhullapp.util.Primitives;
 
 /**
  * Graham Scan algorithm 1. Sorts the points based on angle 2. Push point if
@@ -95,8 +98,8 @@ public class GrahamScan extends ConvexHullAlgo {
 			if (p.y > lowestRightestPt.y) {
 				lowestRightestPt = p;
 			} else if (p.y == lowestRightestPt.y) {
-				lowestRightestPt = (lowestRightestPt.x > p.x) ? lowestRightestPt
-						: p;
+				lowestRightestPt = (lowestRightestPt.x > p.x) ? p
+						: lowestRightestPt;
 			}
 		}
 

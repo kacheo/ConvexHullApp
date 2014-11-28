@@ -11,6 +11,14 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.lonkal.convexhullapp.algorithms.ConvexHullAlgo;
+import com.lonkal.convexhullapp.algorithms.GrahamScan;
+import com.lonkal.convexhullapp.algorithms.JarvisMarch;
+import com.lonkal.convexhullapp.algorithms.MonotoneChain;
+import com.lonkal.convexhullapp.algorithms.RandomIncremental;
+import com.lonkal.convexhullapp.algorithms.SweepHull;
+import com.lonkal.convexhullapp.util.Line;
+
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
 

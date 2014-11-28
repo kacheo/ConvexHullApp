@@ -18,6 +18,11 @@ import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.lonkal.convexhullapp.listeners.ClearButtonListener;
+import com.lonkal.convexhullapp.listeners.ComputeCHButtonListener;
+import com.lonkal.convexhullapp.listeners.RandomButtonListener;
+import com.lonkal.convexhullapp.listeners.ToggleRunButtonListener;
+
 /**
  * The "main" class that calls the main method and initializes everything
  * 
@@ -165,7 +170,7 @@ public class ConvexHullApp {
 		});
 		addRandomButton.addActionListener(new RandomButtonListener(graphPanel));
 		clearButton.addActionListener(new ClearButtonListener(graphPanel));
-		computeCHButton.addActionListener(new ComputeCHButton(graphPanel));
+		computeCHButton.addActionListener(new ComputeCHButtonListener(graphPanel));
 		resumeButton.addActionListener(new ToggleRunButtonListener(graphPanel));
 
 		toolbarPanel.add(chAlgoSelector);

@@ -1,7 +1,9 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.algorithms;
 
 import java.awt.Point;
 import java.util.LinkedList;
+
+import com.lonkal.convexhullapp.util.Line;
 
 public class BruteForce extends ConvexHullAlgo {
 

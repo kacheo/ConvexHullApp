@@ -1,4 +1,4 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.util;
 
 import java.awt.Point;
 

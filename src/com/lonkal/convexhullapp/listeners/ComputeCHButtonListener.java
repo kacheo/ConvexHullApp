@@ -1,13 +1,15 @@
-package com.lonkal.convexhullapp.main;
+package com.lonkal.convexhullapp.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ComputeCHButton implements ActionListener {
+import com.lonkal.convexhullapp.main.GraphPanel;
+
+public class ComputeCHButtonListener implements ActionListener {
 
 	private GraphPanel graphPanel;
 
-	public ComputeCHButton(GraphPanel gp) {
+	public ComputeCHButtonListener(GraphPanel gp) {
 		graphPanel = gp;
 	}
 
