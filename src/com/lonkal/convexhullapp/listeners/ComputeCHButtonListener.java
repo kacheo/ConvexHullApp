@@ -17,9 +17,4 @@ public class ComputeCHButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		graphPanel.start();
 	}
-
-	public void changeCHMethod() {
-		// to change the method
-	}
-
 }
