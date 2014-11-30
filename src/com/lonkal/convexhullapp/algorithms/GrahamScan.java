@@ -10,8 +10,13 @@ import com.lonkal.convexhullapp.util.Line;
 import com.lonkal.convexhullapp.util.Primitives;
 
 /**
- * Graham Scan algorithm 1. Sorts the points based on angle 2. Push point if
- * Left turn 3. Pop point if Right turn
+ * Graham Scan algorithm
+ * 
+ * 1. Sorts the points based on angle
+ * 
+ * 2. Push point if Left turn
+ * 
+ * 3. Pop point if Right turn
  * 
  * @author Kal
  * 
