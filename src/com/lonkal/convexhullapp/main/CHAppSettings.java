@@ -8,7 +8,7 @@ package com.lonkal.convexhullapp.main;
  */
 public final class CHAppSettings {
 
-	public static final String ABOUT_APP_MESSAGE = "Convex Hull App | v 1.1\nKalon Cheong (c) 2014\n\nServing all your Convex Hull Algorithm simulation needs :)";
+	public static final String ABOUT_APP_MESSAGE = "Convex Hull App | v 1.2\nKalon Cheong (c) 2014\n\nServing all your Convex Hull Algorithm simulation needs :)";
 
 	public static final String CH_BRUTE_FORCE_NAME = "Brute Force";
 	public static final String CH_GRAHAM_SCAN_NAME = "Graham Scan";
