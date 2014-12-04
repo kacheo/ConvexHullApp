@@ -51,3 +51,6 @@ App In Action
 
 > Sweephull
   ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/sweephulldemo.gif)
+
+> Graham Scan
+  ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/grahamscandemo.gif)
