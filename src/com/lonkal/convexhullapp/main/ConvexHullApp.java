@@ -37,14 +37,15 @@ public class ConvexHullApp {
 	public static final int HEIGHT = 800;
 
 	public static JTextPane numCounterPane;
-
+	private static JTextPane stepDescriptionPane;
+	
 	public static void main(String[] args) {
 		initializeGUI();
 	}
 
 	private static void initializeGUI() {
 		// MAIN PANEL's settings
-		JFrame mainFrame = new JFrame();
+		final JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("ConvexHullApp");
 		mainFrame.setLayout(new BorderLayout());
 		mainFrame.setSize(WIDTH, HEIGHT);
@@ -84,10 +85,11 @@ public class ConvexHullApp {
 		mainFrame.add(graphPanel, BorderLayout.CENTER);
 
 		// NORTH PANEL
-		JPanel topPanel = new JPanel(new BorderLayout());
-		JPanel numCounterHolderPane = new JPanel();
-		JTextPane numCounterStaticPane = new JTextPane(); // Holds the step
-		numCounterStaticPane.setText("Step Number: ");
+		final JPanel topPanel = new JPanel(new BorderLayout());
+		final JPanel numCounterHolderPane = new JPanel();
+		final JTextPane numCounterStaticPane = new JTextPane(); // Holds the
+																// step
+		numCounterStaticPane.setText(CHAppSettings.STEP_NUMBER);
 		numCounterStaticPane.setBackground(mainFrameBgColor);
 
 		numCounterPane = new JTextPane();
@@ -101,7 +103,7 @@ public class ConvexHullApp {
 		final JTextPane numStepPerSecondPane = new JTextPane();
 		numStepPerSecondPane.setBackground(mainFrameBgColor);
 		numStepPerSecondPane.setText(GraphPanel.DEFAULT_DELAY_MS
-				+ " ms between steps");
+				+ CHAppSettings.STEP_METRICS);
 
 		// SLIDER
 		final JSlider stepSpeedSlider = new JSlider(JSlider.HORIZONTAL,
@@ -131,8 +133,35 @@ public class ConvexHullApp {
 		speedBarHolderPane.add(stepSpeedSlider);
 		speedBarHolderPane.add(numStepPerSecondPane);
 
-		JPanel aboutPanel = new JPanel();
-		JButton aboutButton = new JButton("About");
+		// Step Description Pane
+		stepDescriptionPane = new JTextPane();
+		stepDescriptionPane.setText("---");
+		stepDescriptionPane.setBackground(mainFrameBgColor);
+		topPanel.add(stepDescriptionPane, BorderLayout.CENTER);
+		topPanel.add(numCounterHolderPane, BorderLayout.WEST);
+		topPanel.add(speedBarHolderPane, BorderLayout.EAST);
+
+		// SOUTH PANEL
+		final JPanel toolbarPanel = new JPanel();
+		final JComboBox<String> chAlgoSelector = new JComboBox<String>(
+				CHAppSettings.CH_ALGORITHMS_LIST);
+
+		final JButton aboutButton = new JButton("About");
+		final JButton addRandomButton = new JButton("Generate Random Points");
+		final JButton clearButton = new JButton("Clear");
+		final JButton computeCHButton = new JButton("Compute Convex Hull");
+		final JButton resumeButton = new JButton("Run/Stop");
+
+		chAlgoSelector.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				graphPanel.setCHAlgorithm(chAlgoSelector.getSelectedItem()
+						.toString());
+			}
+
+		});
+
 		aboutButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -144,33 +173,10 @@ public class ConvexHullApp {
 			}
 		});
 
-		aboutPanel.add(aboutButton);
-
-		topPanel.add(aboutPanel, BorderLayout.CENTER);
-		topPanel.add(numCounterHolderPane, BorderLayout.WEST);
-		topPanel.add(speedBarHolderPane, BorderLayout.EAST);
-
-		// SOUTH PANEL
-		JPanel toolbarPanel = new JPanel();
-		final JComboBox<String> chAlgoSelector = new JComboBox<String>(
-				CHAppSettings.CH_ALGORITHMS_LIST);
-		JButton addRandomButton = new JButton("Generate Random Points");
-		JButton clearButton = new JButton("Clear");
-		JButton computeCHButton = new JButton("Compute Convex Hull");
-		JButton resumeButton = new JButton("Run/Stop");
-
-		chAlgoSelector.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				graphPanel.setCHAlgorithm(chAlgoSelector.getSelectedItem()
-						.toString());
-			}
-
-		});
 		addRandomButton.addActionListener(new RandomButtonListener(graphPanel));
 		clearButton.addActionListener(new ClearButtonListener(graphPanel));
-		computeCHButton.addActionListener(new ComputeCHButtonListener(graphPanel));
+		computeCHButton.addActionListener(new ComputeCHButtonListener(
+				graphPanel));
 		resumeButton.addActionListener(new ToggleRunButtonListener(graphPanel));
 
 		toolbarPanel.add(chAlgoSelector);
@@ -178,6 +184,7 @@ public class ConvexHullApp {
 		toolbarPanel.add(addRandomButton);
 		toolbarPanel.add(clearButton);
 		toolbarPanel.add(resumeButton);
+		toolbarPanel.add(aboutButton);
 
 		// MAIN PANEL
 		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);
@@ -185,4 +192,10 @@ public class ConvexHullApp {
 
 		mainFrame.setVisible(true);
 	}
+	
+	public static void log(String s) {
+		if (stepDescriptionPane != null)
+			stepDescriptionPane.setText(s);
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.lonkal.convexhullapp.main.ConvexHullApp;
 import com.lonkal.convexhullapp.util.Line;
 import com.lonkal.convexhullapp.util.Primitives;
 
@@ -26,11 +27,14 @@ public class SweepHull extends ConvexHullAlgo {
 
 	@Override
 	protected void init() {
+		ConvexHullApp.log("Sorting points based on X Coordinates...");
+
 		Collections.sort(pointList, new XSortComparator());
 		// add in clockwise position starting at leftmost pt
 		if (Primitives.orientation(pointList.get(0), pointList.get(1),
 				pointList.get(2)) == 1) {
-			// Left turn means we add the pts, where the 3rd point in X-coord is 2nd
+			// Left turn means we add the pts, where the 3rd point in X-coord is
+			// 2nd
 			convexHullList.add(pointList.get(0));
 			convexHullList.add(pointList.get(2));
 			convexHullList.add(pointList.get(1));
@@ -46,6 +50,7 @@ public class SweepHull extends ConvexHullAlgo {
 	@Override
 	public void step() {
 		if (i >= pointList.size() || isDone) {
+			ConvexHullApp.log("Finished!");
 			isDone = true;
 			return;
 		}
@@ -61,13 +66,18 @@ public class SweepHull extends ConvexHullAlgo {
 
 		// Start top tangent
 		if (!topTangentDone) {
+
 			p = convexHullList.get(tangentIndex);
 			q = convexHullList.get(tangentIndex + 1);
 			if (Primitives.orientation(p, q, r) <= 1) {
 				tRm = convexHullList.get(tangentIndex + 1);
 				topTangentDone = true;
 				tangentIndex = convexHullList.size() - 1;
+				ConvexHullApp.log("Found top tangent point! " + tRm);
 			} else {
+				ConvexHullApp
+						.log("Not a top tangent point.. moving on to next point in hull");
+
 				tangentIndex++;
 			}
 		} else if (topTangentDone && !lowerTangentDone) {
@@ -78,6 +88,7 @@ public class SweepHull extends ConvexHullAlgo {
 					|| Primitives.orientation(p, q, r) == 0) {
 				lRm = convexHullList.get(tangentIndex - 1);
 				lowerTangentDone = true;
+				ConvexHullApp.log("Found lower tangent point! " + lRm);
 
 				if (tRm == lRm) {
 					// If same tangent point, we remove it and add the new point
@@ -106,9 +117,13 @@ public class SweepHull extends ConvexHullAlgo {
 				tangentIndex = 0;
 
 			} else {
+				ConvexHullApp
+						.log("Not a lower tangent point! Moving on to next point");
+
 				tangentIndex--;
 			}
 		} else if (topTangentDone && lowerTangentDone) {
+			ConvexHullApp.log("Found top and bottom tangent, so we will find the next tangent points");
 			i++;
 			topTangentDone = false;
 			lowerTangentDone = false;

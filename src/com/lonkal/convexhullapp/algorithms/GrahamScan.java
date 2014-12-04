@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import com.lonkal.convexhullapp.main.ConvexHullApp;
 import com.lonkal.convexhullapp.util.Line;
 import com.lonkal.convexhullapp.util.Primitives;
 
@@ -127,6 +128,7 @@ public class GrahamScan extends ConvexHullAlgo {
 	@Override
 	public void step() {
 		if (isDone) {
+			ConvexHullApp.log("Finished!");
 			return;
 		}
 
@@ -144,9 +146,11 @@ public class GrahamScan extends ConvexHullAlgo {
 		r = pointList.get(i);
 
 		if (Primitives.orientation(p, q, r) <= 1 || i == pointList.size() - 1) {
+			ConvexHullApp.log("Adding point " + r + " because left turn.");
 			convexHullList.add(r); // Push because it's a left turn
 			i++;
 		} else if (Primitives.orientation(p, q, r) == 2) {
+			ConvexHullApp.log("Remove point " + q + " because right turn.");
 			convexHullList.remove(q); // Pop off the chain
 		}
 	}

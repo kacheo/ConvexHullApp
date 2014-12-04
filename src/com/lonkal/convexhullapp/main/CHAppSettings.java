@@ -17,7 +17,9 @@ public final class CHAppSettings {
 	public static final String CH_RANDOMIZED_INCREMENTAL_NAME = "Randomized Incremental";
 	public static final String CH_SWEEPHULL_NAME = "Sweep Hull";
 
+	public static final String STEP_METRICS = " ms between steps";
+	public static final String STEP_NUMBER = "Step Number: "; 
+
 	public static final String[] CH_ALGORITHMS_LIST = { CH_JARVIS_MARCH_NAME,
 			CH_MONOTONE_CHAIN_NAME, CH_SWEEPHULL_NAME, CH_GRAHAM_SCAN_NAME };
-
 }

@@ -3,6 +3,7 @@ package com.lonkal.convexhullapp.algorithms;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import com.lonkal.convexhullapp.main.ConvexHullApp;
 import com.lonkal.convexhullapp.util.Line;
 import com.lonkal.convexhullapp.util.Primitives;
 
@@ -36,6 +37,7 @@ public class JarvisMarch extends ConvexHullAlgo {
 	protected void init() {
 		convexHullList = new LinkedList<Point>();
 
+		ConvexHullApp.log("Finding leftmost point...");
 		Point leftMostPoint = getLeftmostPoint(pointList);
 		// Add leftmost point to the convex hull list
 		convexHullList.add(leftMostPoint);
@@ -47,6 +49,11 @@ public class JarvisMarch extends ConvexHullAlgo {
 
 	@Override
 	public void step() {
+		if (isDone) {
+			ConvexHullApp.log("Finished");
+			return;
+		}
+		
 		stepNum++;
 		if (currentIndexOfElement >= pointList.size()) {
 
@@ -64,12 +71,17 @@ public class JarvisMarch extends ConvexHullAlgo {
 
 			// reset the index to 0 to restart search based on new hull point
 			currentIndexOfElement = 0;
+			
+			ConvexHullApp.log("Resetting index search based on new point " + p);
 			return;
 		}
 
 		r = pointList.get(currentIndexOfElement);
 		if (q == p || Primitives.orientation(p, q, r) == 1) {
+			ConvexHullApp.log("Left turn! so we move up from q");
 			q = r;
+		} else {
+			ConvexHullApp.log("Right turn!");
 		}
 
 		currentIndexOfElement++;

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.lonkal.convexhullapp.main.ConvexHullApp;
 import com.lonkal.convexhullapp.util.Line;
 import com.lonkal.convexhullapp.util.Primitives;
 
@@ -26,6 +27,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 	@Override
 	public void step() {
 		if (upperHullIsDone && lowerHullIsDone) {
+			ConvexHullApp.log("Finished!");
 			return;
 		}
 
@@ -35,6 +37,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 			convexHullList = upperHull;
 
 			if (i < 0) {
+				ConvexHullApp.log("Finished UpperHull!");
 				upperHullIsDone = true;
 				convexHullList = upperHull;
 				i = 0; // Reset i back to 0 for lower hull calculation
@@ -47,6 +50,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 							upperHull.get(upperHull.size() - 1),
 							upperHull.get(upperHull.size() - 2),
 							pointList.get(i)) <= 1) {
+				ConvexHullApp.log("Right turn, so we back down");
 				p = upperHull.get(upperHull.size() - 1);
 				q = upperHull.get(upperHull.size() - 2);
 				r = pointList.get(i);
@@ -56,6 +60,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 				upperHull.addLast(pointList.get(i));
 				r = pointList.get(i);
 				i--;
+				ConvexHullApp.log("Left turn, so we procede to add " + r);
 				return;
 			}
 		}
@@ -66,7 +71,9 @@ public class MonotoneChain extends ConvexHullAlgo {
 
 			if (i >= pointList.size()) {
 				lowerHullIsDone = true;
-
+				
+				ConvexHullApp.log("Finished computing lower hull... Merging both hulls");
+				
 				// collinear cases, so check before removing
 				if (lowerHull.getFirst() == upperHull.getFirst()) {
 					lowerHull.removeFirst();
@@ -94,9 +101,12 @@ public class MonotoneChain extends ConvexHullAlgo {
 				r = pointList.get(i);
 
 				lowerHull.removeLast();
+				
+				ConvexHullApp.log("Left turn, so we remove last point from LowerHull");
 			} else {
 				lowerHull.addLast(pointList.get(i));
 				i++;
+				ConvexHullApp.log("Right turn, so we add the point to lowerhull");
 			}
 
 			convexHullList = lowerHull;
@@ -132,6 +142,7 @@ public class MonotoneChain extends ConvexHullAlgo {
 	public void init() {
 		upperHull = new LinkedList<Point>();
 		lowerHull = new LinkedList<Point>();
+		ConvexHullApp.log("Sorting...");
 
 		Collections.sort(pointList, new XSortComparator());
 		i = pointList.size() - 1; // start at last index for upperhull
