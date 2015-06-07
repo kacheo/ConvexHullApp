@@ -88,14 +88,14 @@ public class GraphPanel extends JPanel {
 
 		// Draw a step
 		if (step != null) {
-			g.setColor(new Color(0, 0, 255));
+			g.setColor(new Color(255, 0, 255));
 			g.drawLine(step.getPoint1().x, step.getPoint1().y,
 					step.getPoint2().x, step.getPoint2().y);
 		}
 
 		// Draw step points
 		if (stepPointList != null) {
-			g.setColor(new Color(50, 250, 50));
+			g.setColor(new Color(0, 255, 0));
 			for (int i = 0; i < stepPointList.size() - 1; i++) {
 				// Mark these points, they represent a left test, or some
 				// intermediary step
@@ -108,7 +108,7 @@ public class GraphPanel extends JPanel {
 
 		// Draw convex hull
 		if (convexHullList != null) {
-			g.setColor(new Color(161, 0, 0));
+			g.setColor(new Color(255, 255, 0));
 			for (int i = 0; i < convexHullList.size() - 1; i++) {
 				g.drawLine(convexHullList.get(i).x, convexHullList.get(i).y,
 						convexHullList.get(i + 1).x,
