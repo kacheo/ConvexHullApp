@@ -3,3 +3,7 @@
 
 *.prefs
 /bin/
+
+out/*
+.idea/*
+*.iml
