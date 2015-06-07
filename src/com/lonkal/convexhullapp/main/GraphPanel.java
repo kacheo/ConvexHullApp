@@ -78,7 +78,7 @@ public class GraphPanel extends JPanel {
 		super.paintComponent(g);
 		
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, ConvexHullApp.HEIGHT, ConvexHullApp.WIDTH);
+		g.fillRect(0, 0, ConvexHullApp.WIDTH, ConvexHullApp.HEIGHT);
 		
 		// Draw the points
 		for (Point p : pointList) {

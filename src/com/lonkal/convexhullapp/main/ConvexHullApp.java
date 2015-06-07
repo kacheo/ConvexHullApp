@@ -33,7 +33,7 @@ public class ConvexHullApp {
 
 	public JFrame mainFrame;
 
-	public static final int WIDTH = 800;
+	public static final int WIDTH = 900;
 	public static final int HEIGHT = 800;
 
 	public static JTextPane numCounterPane;
@@ -57,7 +57,7 @@ public class ConvexHullApp {
 
 		// Center Panel
 		final GraphPanel graphPanel = new GraphPanel();
-		graphPanel.setPreferredSize(new Dimension(WIDTH, WIDTH));
+		graphPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		graphPanel.addMouseListener(new MouseListener() {
 
 			@Override
@@ -187,8 +187,8 @@ public class ConvexHullApp {
 		toolbarPanel.add(aboutButton);
 
 		// MAIN PANEL
-		mainFrame.add(toolbarPanel, BorderLayout.SOUTH);
-		mainFrame.add(topPanel, BorderLayout.NORTH);
+		mainFrame.add(toolbarPanel, BorderLayout.NORTH);
+		mainFrame.add(topPanel, BorderLayout.SOUTH);
 
 		mainFrame.setVisible(true);
 	}
