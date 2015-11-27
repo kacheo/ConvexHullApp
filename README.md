@@ -43,14 +43,21 @@ FAQ
 
 App In Action
 ------------
+
 > Jarvis March
   ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/jarvismarchdemo.gif)
+
+----
 
 > Monotone Chain
   ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/monotonechaindemo.gif)
 
+----
+
 > Sweephull
   ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/sweephulldemo.gif)
+
+----
 
 > Graham Scan
   ![alt tag](https://raw.github.com/Lonkal/ConvexHullApp/master/images/grahamscandemo.gif)
